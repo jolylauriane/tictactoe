@@ -1,6 +1,7 @@
 package tictactoe;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Tictactoe {
@@ -31,5 +32,10 @@ public class Tictactoe {
 
     private Boolean hasAWinner(List<String> columnValues) {
         return !columnValues.get(0).isEmpty() && columnValues.get(0).equals(columnValues.get(1)) && columnValues.get(0).equals(columnValues.get(2));
+    }
+
+    public String whosTurn(List<List<String>> grid) {
+        long count = grid.stream().flatMap(Collection::stream).filter(value -> !value.isEmpty()).count();
+        return count % 2 == 0 ? "X" : "O";
     }
 }

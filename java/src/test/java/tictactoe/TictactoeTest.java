@@ -1,9 +1,10 @@
 package tictactoe;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.List;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TictactoeTest {
     private static final List<String> EMPTY_LINE = List.of("", "", "");
@@ -11,34 +12,42 @@ public class TictactoeTest {
 
     @Test
     public void thereIsNoWinnerWhenWeStartTheGame() {
-        Assertions.assertThat(sut.winner(List.of(EMPTY_LINE, EMPTY_LINE, EMPTY_LINE))).isNull();
+        assertThat(sut.winner(List.of(EMPTY_LINE, EMPTY_LINE, EMPTY_LINE))).isNull();
     }
 
     @Test
     public void winnerFirstLine() {
-        Assertions.assertThat(sut.winner(List.of(List.of("X", "X", "X"), EMPTY_LINE, EMPTY_LINE))).isEqualTo("X");
+        assertThat(sut.winner(List.of(List.of("X", "X", "X"), EMPTY_LINE, EMPTY_LINE))).isEqualTo("X");
     }
 
     @Test
     public void winnerSecondLine() {
-        Assertions.assertThat(sut.winner(List.of(EMPTY_LINE, List.of("O", "O", "O"), EMPTY_LINE))).isEqualTo("O");
+        assertThat(sut.winner(List.of(EMPTY_LINE, List.of("O", "O", "O"), EMPTY_LINE))).isEqualTo("O");
     }
 
     @Test
     public void winnerThirdLine() {
-        Assertions.assertThat(sut.winner(List.of(EMPTY_LINE, EMPTY_LINE, List.of("X", "X", "X")))).isEqualTo("X");
+        assertThat(sut.winner(List.of(EMPTY_LINE, EMPTY_LINE, List.of("X", "X", "X")))).isEqualTo("X");
     }
 
     @Test
     public void winnerFirstColumn() {
-        Assertions.assertThat(sut.winner(List.of(List.of("O", "", ""), List.of("O", "", ""), List.of("O", "", "")))).isEqualTo("O");
+        assertThat(sut.winner(List.of(List.of("O", "", ""), List.of("O", "", ""), List.of("O", "", "")))).isEqualTo("O");
     }
     @Test
     public void winnerSecondColumn() {
-        Assertions.assertThat(sut.winner(List.of(List.of("", "O", ""), List.of("", "O", ""), List.of("", "O", "")))).isEqualTo("O");
+        assertThat(sut.winner(List.of(List.of("", "O", ""), List.of("", "O", ""), List.of("", "O", "")))).isEqualTo("O");
     }
     @Test
     public void winnerThirdColumn() {
-        Assertions.assertThat(sut.winner(List.of(List.of("", "", "O"), List.of("", "", "O"), List.of("", "", "O")))).isEqualTo("O");
+        assertThat(sut.winner(List.of(List.of("", "", "O"), List.of("", "", "O"), List.of("", "", "O")))).isEqualTo("O");
+    }
+    @Test
+    public void whosTurnWhenStarting() {
+        assertThat(sut.whosTurn(List.of(EMPTY_LINE, EMPTY_LINE, EMPTY_LINE))).isEqualTo("X");
+    }
+    @Test
+    public void whosTurnOnSecondTurn() {
+        assertThat(sut.whosTurn(List.of(List.of("X", "", ""), EMPTY_LINE, EMPTY_LINE))).isEqualTo("O");
     }
 }
