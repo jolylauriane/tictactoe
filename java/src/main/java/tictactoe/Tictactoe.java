@@ -1,18 +1,35 @@
 package tictactoe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Tictactoe {
-    public static void main(String[] args) {
-        System.out.println("Hello babouche");
-    }
 
     public String winner(List<List<String>> grid) {
         for (List<String> line : grid) {
-            if (!line.get(0).isEmpty() && line.get(0).equals(line.get(1)) && line.get(0).equals(line.get(2))) {
+            if (hasAWinner(line)) {
                 return line.get(0);
             }
         }
+        for (int index = 0; index < 3; index++) {
+            List<String> columnValues = getColumnValues(grid, index);
+            if (hasAWinner(columnValues)) {
+                return columnValues.get(0);
+            }
+        }
         return null;
+    }
+
+    private List<String> getColumnValues(List<List<String>> grid, Integer columnIndex) {
+        List<String> columnValues = new ArrayList<>();
+        for (List<String> line : grid) {
+            columnValues.add(line.get(columnIndex));
+
+        }
+        return columnValues;
+    }
+
+    private Boolean hasAWinner(List<String> columnValues) {
+        return !columnValues.get(0).isEmpty() && columnValues.get(0).equals(columnValues.get(1)) && columnValues.get(0).equals(columnValues.get(2));
     }
 }
