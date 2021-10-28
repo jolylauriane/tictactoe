@@ -3,9 +3,10 @@
 
 - [x] app skeleton
 - [x] find winner row
-- [x] find winner colums
-- [ ] find winner diag
+- [x] find winner column
+- [ ] find winner diagonal
 - [x] find next player
-- [ ] a move is valid
-- [ ] play a move
+- [x] a move is valid
+- [x] make a move
 - [ ] print the board
+- [ ] ui

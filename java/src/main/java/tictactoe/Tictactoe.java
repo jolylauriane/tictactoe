@@ -38,4 +38,16 @@ public class Tictactoe {
         long count = grid.stream().flatMap(Collection::stream).filter(value -> !value.isEmpty()).count();
         return count % 2 == 0 ? "X" : "O";
     }
+
+    public boolean isMoveValid(int line, int column, List<List<String>> board) {
+        return board.get(line - 1).get(column - 1).isEmpty();
+    }
+
+    public List<List<String>> move(String x, int line, int column, List<List<String>> board) {
+        if (!isMoveValid(line, column, board)) {
+            throw new RuntimeException("box already taken");
+        }
+        board.get(line - 1).set(column - 1, x);
+        return board;
+    }
 }
